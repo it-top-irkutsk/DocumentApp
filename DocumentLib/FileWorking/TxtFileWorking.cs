@@ -1,15 +1,17 @@
 ﻿using System.IO;
+using DocumentLib.Document;
+using DocumentLib.FileWorking;
 
 namespace DocumentLib
 {
     public class TxtFileWorking : IFileWorking
     {
-        public Document Create(string path)
+        public Document.Document Create(string path)
         {
             return new TxtDocument(path);
         }
 
-        public Document Open(string path)
+        public Document.Document Open(string path)
         {
             var document = new TxtDocument(path);
 
@@ -18,14 +20,14 @@ namespace DocumentLib
             return document;
         }
 
-        public void SaveAs(string path, Document document)
+        public void SaveAs(string path, Document.Document document)
         {
             using var file = new StreamWriter(path, false);
             file.WriteAsync(document.Content);
             document.Path = path;
         }
 
-        public void Save(Document document)
+        public void Save(Document.Document document)
         {
             SaveAs(document.Path, document);
         }
@@ -35,7 +37,7 @@ namespace DocumentLib
             //TODO
         }
 
-        public void Print(Document document)
+        public void Print(Document.Document document)
         {
             //TODO
         }

@@ -1,4 +1,4 @@
-﻿namespace DocumentLib
+﻿namespace DocumentLib.Document
 {
     public class TxtDocument : Document
     {

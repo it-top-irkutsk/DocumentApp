@@ -1,11 +1,11 @@
-﻿namespace DocumentLib
+﻿namespace DocumentLib.Document
 {
     public abstract class Document
     {
         public string Path { get; set; }
         public string Content { get; set; }
 
-        public Document(string path)
+        protected Document(string path)
         {
             Path = path;
             Content = string.Empty;
