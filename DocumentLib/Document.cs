@@ -2,7 +2,13 @@
 {
     public abstract class Document
     {
-        protected string _path;
-        public string Content { get; protected set; }
+        public string Path { get; set; }
+        public string Content { get; set; }
+
+        public Document(string path)
+        {
+            Path = path;
+            Content = string.Empty;
+        }
     }
 }
