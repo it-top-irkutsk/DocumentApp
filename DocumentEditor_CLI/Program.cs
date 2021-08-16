@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 using DocumentLib;
 using DocumentLib.Document;
 using DocumentLib.FileWorking;
@@ -21,19 +23,33 @@ namespace DocumentEditor_CLI
             {
                 case "1":
                     fileWorking = new TxtFileWorking();
-                    path = @"C:\Users\Stari\Desktop\BestOil.txt";
+                    //path = @"C:\Users\Stari\Desktop\BestOil.txt";
                     break;
-                case "2":
+                /*case "2":
                     fileWorking = new MdFileWorking();
                     path = @"C:\Users\Stari\Desktop\BestOil.md";
-                    break;
+                    break;*/
                 default:
                     return;
             }
 
-            var document = fileWorking.Open(path);
-            
-            Show(document);
+            var res = fileWorking.Open(path, out var document);
+            if (!res.Success)
+            {
+                switch (res.Type)
+                {
+                    case ErrorType.ArgumentNull:
+                        Console.WriteLine("ОШИБКА!!! Пустой путь");
+                        break;
+                    case ErrorType.FileNotFound:
+                        Console.WriteLine("ОШИБКА!!! Файл не найден");
+                        break;
+                }
+            }
+            else
+            {
+                Show(document);
+            }
         }
 
         static void Show(Document document)

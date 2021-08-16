@@ -3,7 +3,7 @@ using DocumentLib.Document;
 
 namespace DocumentLib.FileWorking
 {
-    public class MdFileWorking : IFileWorking
+    public class MdFileWorking //TODO Реализовать наследование
     {
         public Document.Document Create(string path)
         {
